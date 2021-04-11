@@ -1,4 +1,6 @@
 import { initLifecycle } from "./lifecycle";
+import { initRender } from "./render";
+import { initState } from "./state";
 
 export function initMixin(Vue) {
     Vue.prototype._init = function (options) {
@@ -10,7 +12,10 @@ export function initMixin(Vue) {
 
         vm._self = vm
 
-        initLifecycle(vm)
+        vm.$options = options
 
+        initLifecycle(vm)
+        initRender(vm)
+        initState(vm)
     }
 }

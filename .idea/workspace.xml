@@ -1,7 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="735558e9-991c-4629-b73e-40b439228e8f" name="Default Changelist" comment="" />
+    <list default="true" id="735558e9-991c-4629-b73e-40b439228e8f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/core/instance/render.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/instance/state.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/observer/array.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/observer/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/utils/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/utils/options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/vdom/create-element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/mvue.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/mvue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/demo1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/demo1/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/acorn" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/acorn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/acorn.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/acorn.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/buble" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/buble" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/buble.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/buble.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/jsesc" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/jsesc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/jsesc.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/jsesc.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/regjsparser" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/regjsparser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/regjsparser.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/regjsparser.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/rollup" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/rollup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/rollup.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/rollup.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/acorn-dynamic-import/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/acorn-dynamic-import/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/acorn-jsx/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/acorn-jsx/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/acorn/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/acorn/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ansi-styles/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ansi-styles/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/buble/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/buble/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/chalk/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/chalk/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/color-convert/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/color-convert/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/color-name/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/color-name/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/escape-string-regexp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/escape-string-regexp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/estree-walker/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/estree-walker/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/has-flag/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/has-flag/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jsesc/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/jsesc/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/magic-string/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/magic-string/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/minimist/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/minimist/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/os-homedir/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/os-homedir/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/regenerate-unicode-properties/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/regenerate-unicode-properties/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/regenerate/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/regenerate/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/regexpu-core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/regexpu-core/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/regjsgen/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/regjsgen/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/regjsparser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/regjsparser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rollup-plugin-buble/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rollup-plugin-buble/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rollup-pluginutils/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rollup-pluginutils/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/rollup/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/rollup/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/sourcemap-codec/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/sourcemap-codec/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/supports-color/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/supports-color/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/unicode-canonical-property-names-ecmascript/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/unicode-canonical-property-names-ecmascript/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/unicode-match-property-ecmascript/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/unicode-match-property-ecmascript/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/unicode-match-property-value-ecmascript/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/unicode-match-property-value-ecmascript/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/unicode-property-aliases-ecmascript/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/unicode-property-aliases-ecmascript/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/instance/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/instance/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/instance/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/instance/init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/instance/lifecycle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/instance/lifecycle.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,8 +85,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="14.16.0" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.13.1" />
     <property name="javascript.nodejs.core.library.typings.version" value="14.14.37" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -38,7 +95,13 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\liuyu\Desktop\demo\mvue\src\core" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -68,6 +131,11 @@
       <workItem from="1617798262913" duration="283000" />
       <workItem from="1617853929568" duration="6390000" />
       <workItem from="1617884395337" duration="284000" />
+      <workItem from="1617981235426" duration="477000" />
+      <workItem from="1617981727430" duration="88000" />
+      <workItem from="1617981886437" duration="1200000" />
+      <workItem from="1617983099988" duration="846000" />
+      <workItem from="1618121635783" duration="21766000" />
     </task>
     <servers />
   </component>

@@ -7,9 +7,18 @@
 <body>
 <script src="../../dist/mvue.js"></script>
 <script>
-    let mv = new MVue({
-        el: '#app'
+    let vm = new MVue({
+        el: '#app',
+        data: {
+          msg: 'hello world'
+        },
+        methods: {
+            clickHandler() {
+                console.log('111')
+            }
+        }
     })
+    console.log(vm)
 </script>
 </body>
 </html>
