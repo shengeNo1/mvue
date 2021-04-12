@@ -17,5 +17,9 @@ export function initMixin(Vue) {
         initLifecycle(vm)
         initRender(vm)
         initState(vm)
+
+        if (vm.$options.el) {
+            vm._compiler = vm.$mount(vm.$options.el, vm)
+        }
     }
 }

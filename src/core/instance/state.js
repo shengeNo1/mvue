@@ -3,6 +3,8 @@ import {
     bind
 } from '../utils/index'
 
+import Observer from "../observer/index";
+
 const sharedPropertyDefinition = {
     enumerable: true,
     configurable: true,
@@ -43,22 +45,22 @@ function initMethods(vm, methods) {
 function initData(vm) {
     let data = vm.$options.data
     data = vm._data = typeof data === 'function' ? getData(data, vm) : data || {}
-
+    vm.$data = data
     const keys = Object.keys(data)
     const props = vm.$options.props
     const methods = vm.$options.methods
     let i = keys.length
-
-    while (--i) {
+    while (i--) {
         const key = keys[i]
         proxy(vm, `_data`, key)
     }
-
+    vm._observe = new Observer(data)
 }
 
 export function getData(data, vm) {
     try{
-        return data.call(vm,vm)
+        let d = data.call(vm,vm)
+        return d
     }catch (e) {
         return {}
     }finally {

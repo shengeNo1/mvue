@@ -5,16 +5,23 @@
     <title>Title</title>
 </head>
 <body>
+<div id="app" >
+    <div @click="clickHandler" style="color: #2eb8e0">
+        {{msg}}
+    </div>
+</div>
 <script src="../../dist/mvue.js"></script>
 <script>
     let vm = new MVue({
         el: '#app',
-        data: {
-          msg: 'hello world'
+        data() {
+          return{
+              msg: 'hello world'
+          }
         },
         methods: {
             clickHandler() {
-                console.log('111')
+                this.msg = '1111852'
             }
         }
     })

@@ -7,6 +7,7 @@ export function initLifecycle(vm) {
 
     vm.$children = []
     vm.$refs = {}
+    vm.$data = options.data
 
     vm._watcher = null
 }

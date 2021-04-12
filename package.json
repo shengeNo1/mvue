@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "rollup -w -c scripts/config.js --environment TARGET:web-full-dev"
+    "dev": "rollup -w -c scripts/config.js --environment TARGET:web-full-dev",
+    "dev:vn": "rollup -w -c scripts/config.js --environment TARGET:web-full-dev-vn"
   },
   "keywords": [],
   "author": "",

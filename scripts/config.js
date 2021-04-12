@@ -15,7 +15,13 @@ const resolve = p => {
 
 const builds = {
     'web-full-dev' : {
-        entry: resolve('web/entry-runtime-with-compiler.js'),
+        entry: resolve('web/entry-runtime-with-compiler-fragment.js'),
+        dest: resolve('dist/mvue.js'),
+        format: 'umd',
+        env: 'development'
+    },
+    'web-full-dev-vn' : {
+        entry: resolve('web/entry-runtime-with-compiler-vn.js'),
         dest: resolve('dist/mvue.js'),
         format: 'umd',
         env: 'development'
