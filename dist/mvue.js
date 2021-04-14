@@ -28,8 +28,10 @@
         vm.$createElement = (a, b, c, d) => createElement();
     }
 
+    Object.freeze({});
+
     function polyfillBind(fn, ctx) {
-        function boundFn (a){
+        function boundFn(a) {
             const l = arguments.length;
             return l
                 ? l > 1
@@ -42,7 +44,7 @@
         return boundFn
     }
 
-    function nativeBind (fn, ctx) {
+    function nativeBind(fn, ctx) {
         return fn.bind(ctx)
     }
 
@@ -55,20 +57,29 @@
         }
     }
 
-    function getVal(exp, obj) {
-        return exp.split('.').reduce((data, currentVal) => {
-            return data[currentVal]
-        }, obj)
+    function makeMap(
+        str,
+        expectsLowerCase
+    ) {
+        const map = Object.create(null);
+        const list = str.split(',');
+        for (let i = 0; i < list.length; i++) {
+            map[list[i]] = true;
+        }
+
+        return expectsLowerCase
+            ? val => map[val.toLowerCase()]
+            : val => map[val]
     }
 
     const bind = Function.prototype.bind ? nativeBind : polyfillBind;
 
-    let uid$1 = 0;
+    let uid = 0;
 
     class Dep{
 
         constructor() {
-            this.id = ++ uid$1;
+            this.id = ++ uid;
             this.subs = [];
         }
 
@@ -217,180 +228,283 @@
 
     initMixin(MVue);
 
-    let uid = 0;
+    // Regular Expressions for parsing tags and attributes
+    const unicodeLetters = 'a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD';
+    const attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
+    const ncname = `[a-zA-Z_][\\-\\.0-9_a-zA-Z${unicodeLetters}]*`;
+    const qnameCapture = `((?:${ncname}\\:)?${ncname})`;
+    const startTagOpen = new RegExp(`^<${qnameCapture}`);
+    const startTagClose = /^\s*(\/?)>/;
+    const endTag = new RegExp(`^<\\/${qnameCapture}[^>]*>`);
 
-    class Watcher{
+    const isIgnoreNewlineTag = makeMap('pre,textarea', true);
+    const shouldIgnoreFirstNewline = (tag, html) => tag && isIgnoreNewlineTag(tag) && html[0] === '\n';
 
-        constructor(vm, exp, cb) {
-            this.vm = vm;
-            this.exp = exp;
-            this.cb = cb;
-            vm._watchers.push(this);
-            this.id = ++uid;
-            this.value = this.get();
-        }
-
-        get() {
-            Dep.target = this;
-            let oldValue = getVal(this.exp, this.vm.$data);
-            Dep.target = null;
-            return oldValue;
-        }
-
-        update() {
-            let newValue = getVal(this.exp, this.vm.$data);
-            if (newValue !== this.value) {
-                this.cb.call(this.vm, newValue, this.value);
-            }
-        }
-    }
-
-    class Compile{
-        constructor(el, vm) {
-            this.el = this.isElementNode(el) ? el : document.querySelector(el);
-            this.vm = vm;
-            this.fragment = null;
-
-            if (this.el) {
-                this.fragment = this.nodeToFragment(this.el);
-                this.compileElement(this.fragment);
-                this.el.appendChild(this.fragment);
-            }
-        }
-
-        isElementNode(node) {
-            return node.nodeType === 1
-        }
-
-        nodeToFragment(el) {
-            let fragment = document.createDocumentFragment();
-            let child = null;
-            while (child = el.firstChild) {
-                fragment.appendChild(child);
-            }
-            return fragment;
-        }
-
-        compileElement(el) {
-            let childNodes = el.childNodes;
-            let self = this;
-            let reg = /\{\{(.*)\}\}/;
-            [...childNodes].forEach(node => {
-                let text = node.textContent;
-
-                if (self.isElementNode(node)) {
-                    this.compile(node);
-                }else if (self.isTextNode(node) && reg.test(text)){
-                    this.compileText(node, reg.exec(text)[1]);
-                }
-
-                if (node.childNodes && node.childNodes.length) {
-                    self.compileElement(node);
-                }
-            });
-        }
-
-        compile(node) {
-            let nodeAttrs = node.attributes;
-            let self = this;
-            [...nodeAttrs].forEach(attr => {
-                const {name, value} = attr;
-                if (self.isDirective(name)) {
-                    const [, dirctive] = name.split('-');
-                    const [dirName, event] = dirctive.split(':');
-                    compileUtils[dirName](node, value, this.vm, event);
-                    node.removeAttribute(name);
-                } else if (self.isEventName(name)) {
-                    let event = name.substring(1);
-                    compileUtils['on'](node, value, this.vm, event);
-                    node.removeAttribute(name);
-                }
-            });
-        }
-
-        compileText(node, exp) {
-            let initText = exp.split('.').reduce((data, currentVal) => {
-                return data[currentVal]
-            }, this.vm.$data);
-            new Watcher(this.vm,exp,(newValue)=> {
-                this.updateText(node, newValue);
-            });
-            this.updateText(node, initText);
-        }
-
-        isDirective(attrName) {
-            return attrName.startsWith('v-')
-        }
-
-        isEventName(attrName) {
-            return attrName.startsWith('@')
-        }
-
-        updateText(node, value) {
-            node.textContent = value;
-        }
-
-        isTextNode(node) {
-            return node.nodeType === 3
-        }
-    }
-
-
-    const compileUtils = {
-        text(node, exp, vm) {
-            const value = this.getVal(exp, vm);
-            new Watcher(vm,exp, (newValue) => {
-                this.updater.textUpdater(node, newValue);
-            });
-            this.updater.textUpdater(node, value);
-        },
-        html(node, exp, vm) {
-            const value = this.getVal(exp, vm);
-            new Watcher(vm,exp,(newValue) => {
-                this.updater.htmlUpdater(node, newValue);
-            });
-            this.updater.htmlUpdater(node, value);
-        },
-        model(node, exp, vm) {
-            const value = this.getVal(exp, vm);
-            new Watcher(vm,exp,(newValue) => {
-                this.updater.modelUpdater(node, newValue);
-            });
-            this.updater.modelUpdater(node, value);
-            node.addEventListener('input', (e) => {
-                exp.split('.').reduce((data,current) => {
-                    if (typeof data[current] !== 'object'){
-                        data[current] = e.target.value;
-                    }
-                    return data[current]
-                },vm.$data);
-            },false);
-        },
-        on(node, exp, vm, event) {
-            let method = vm.$options.methods[exp];
-            node.addEventListener(event, method.bind(vm), false);
-        },
-        updater: {
-            textUpdater(node, value) {
-                node.textContent = value;
-            },
-            htmlUpdater(node, value) {
-                node.innerHTML = value;
-            },
-            modelUpdater(node, value) {
-                node.value = value;
-            }
-        },
-        getVal(exp, vm) {
-            return exp.split('.').reduce((data, currentVal) => {
-                return data[currentVal]
-            }, vm.$data)
-        }
+    const decodingMap = {
+        '&lt;': '<',
+        '&gt;': '>',
+        '&quot;': '"',
+        '&amp;': '&',
+        '&#10;': '\n',
+        '&#9;': '\t'
     };
+
+    const encodedAttr = /&(?:lt|gt|quot|amp);/g;
+    const encodedAttrWithNewLines = /&(?:lt|gt|quot|amp|#10|#9);/g;
+
+    function decodeAttr (value, shouldDecodeNewlines) {
+        const re = shouldDecodeNewlines ? encodedAttrWithNewLines : encodedAttr;
+        return value.replace(re, match => decodingMap[match])
+    }
+
+
+    function parseHTML(html, options) {
+        let stack = [];
+        let index = 0;
+        let lastTag;
+
+        while (html) {
+            let textEnd = html.indexOf('<');
+
+            if (textEnd === 0) {
+
+                // End tag:
+                const endTagMatch = html.match(endTag);
+                if (endTagMatch) {
+                    advance(endTagMatch[0].length);
+                    continue
+                }
+
+                // Start tag:
+                const startTagMatch = parseStartTag();
+                if (startTagMatch) {
+                    handleStartTag(startTagMatch);
+                    if (shouldIgnoreFirstNewline(startTagMatch.tagName, html)) {
+                        advance(1);
+                    }
+                    continue
+                }
+            }
+
+
+            advance(1);
+        }
+
+        function advance (n) {
+            index += n;
+            html = html.substring(n);
+        }
+        
+        function parseStartTag() {
+            const start = html.match(startTagOpen);
+            if (start) {
+
+                const match = {
+                    tagName: start[1],
+                    attrs: [],
+                    start: index
+                };
+
+                advance(start[0].length);
+                let end, attr;
+
+                while (!(end = html.match(startTagClose)) && (attr = html.match(attribute))) {
+                    attr.start = index;
+                    advance(attr[0].length);
+                    attr.end = index;
+                    match.attrs.push(attr);
+                }
+                if (end) {
+                    match.unarySlash = end[1];
+                    advance(end[0].length);
+                    match.end =index;
+                    return match
+                }
+            }
+        }
+        
+        function handleStartTag(match) {
+            const tagName = match.tagName;
+            const unarySlash = match.unarySlash;
+
+            {
+                if (lastTag === 'p' && isNonPhrasingTag(tagName)) {
+                    parseEndTag(lastTag);
+                }
+            }
+
+            const unary = isUnaryTag(tagName) || !!unarySlash;
+
+            const l = match.attrs.length;
+            const attrs = new Array(l);
+            for (let i = 0; i < l; i++) {
+                const args = match.attrs[i];
+                const value = args[3] || args[4] || args[5] || '';
+                const shouldDecodeNewlines = false;
+
+                attrs[i] = {
+                    name: args[1],
+                    value: decodeAttr(value, shouldDecodeNewlines)
+                };
+
+                if (!unary) {
+                    stack.push({tag: tagName, lowerCasedTag: tagName.toLowerCase(), attrs: attrs, start: match.start, end: match.end });
+                    lastTag = tagName;
+                }
+
+                if (options.start) {
+                    options.start(tagName, attrs, unary, match.start, match.end);
+                }
+            }
+
+        }
+
+        function parseEndTag(tagName, start, end) {
+            let pos, lowerCasedTagName;
+            if (start == null) start = index;
+            if (end == null) end = index;
+
+            if (tagName) {
+                lowerCasedTagName = tagName.toLowerCase();
+                for (pos = stack.length - 1; pos >= 0; pos--) {
+                    if (stack[pos].lowerCasedTag === lowerCasedTagName) {
+                        break
+                    }
+                }
+            }else {
+                pos = 0;
+            }
+
+            if (pos >= 0 ){
+                for (let i = stack.length - 1; i >= pos; i--) {
+                    if (options.end) {
+                        options.end(start[i].tag, start, end);
+                    }
+                }
+
+                // Remove the open elements from the stack
+                stack.length = pos;
+                lastTag = pos && stack[pos - 1].tag;
+            }else if (lowerCasedTagName === 'br') {
+                if (options.start) {
+                    options.start(tagName, [], true, start, end);
+                }
+            }else if (lowerCasedTagName === 'p') {
+                if (options.start) {
+                    options.start(tagName, [], false, start, end);
+                }
+                if (options.end) {
+                    options.end(tagName, start, end);
+                }
+            }
+        }
+
+    }
+
+    const isNonPhrasingTag = makeMap(
+        'address,article,aside,base,blockquote,body,caption,col,colgroup,dd,' +
+        'details,dialog,div,dl,dt,fieldset,figcaption,figure,footer,form,' +
+        'h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,legend,li,menuitem,meta,' +
+        'optgroup,option,param,rp,rt,source,style,summary,tbody,td,tfoot,th,thead,' +
+        'title,tr,track'
+    );
+
+    const isUnaryTag = makeMap(
+        'area,base,br,col,embed,frame,hr,img,input,isindex,keygen,' +
+        'link,meta,param,source,track,wbr'
+    );
+
+    function createASTElement(tag, attrs, parent) {
+        return {
+            type: 1,
+            tag,
+            attrsList: attrs,
+            attrsMap: makeAttrsMap(attrs),
+            rawAttrsMap: {},
+            parent,
+            children: []
+        }
+    }
+
+    function parser(template) {
+        let currentParent;
+
+        parseHTML(template,{
+
+            start(tag, attrs, unary, start) {
+                createASTElement(tag, attrs, currentParent);
+
+            }
+
+        });
+    }
+
+
+    function makeAttrsMap(attrs) {
+        const map = {};
+        for (let i = 0, l = attrs.length; i < l; i++) {
+            if(!attrs[i]) continue
+            map[attrs[i].name] = attrs[i].value;
+        }
+        return map
+    }
+
+    function createCompileToFunctionFn(compile) {
+
+        return function compileToFunctions(template) {
+
+            const compiled = compile(template);
+
+            console.log(compiled);
+        }
+    }
+
+    function createCompilerCreator(baseCompile) {
+
+        return function createCompiler() {
+
+            function compile(template) {
+                baseCompile(template.trim());
+
+            }
+
+            return {
+                compile,
+                compileToFunctions: createCompileToFunctionFn(compile)
+            }
+        }
+
+    }
+
+    const createCompiler = createCompilerCreator(function baseCompile(template) {
+        parser(template);
+    });
+
+    const { compile, compileToFunctions } = createCompiler({ts: 123});
 
     MVue.prototype.$mount = function (el, vm) {
-        return new Compile(el, vm)
+        el = document.querySelector(el);
+        let template = null;
+        const options = this.$options;
+
+        if (!options.render) {
+            template = getOuterHTML(el);
+        }
+
+        compileToFunctions(template);
+
+
     };
+
+    function getOuterHTML(el) {
+        if (el.outerHTML) {
+            return el.outerHTML
+        }else {
+            const container = document.createElement('div');
+            container.appendChild(el.cloneNode(true));
+            return container.innerHTML
+        }
+    }
 
     return MVue;
 

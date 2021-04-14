@@ -2,21 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="735558e9-991c-4629-b73e-40b439228e8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/compiler/fragment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compiler/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/observer/Dep.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/observer/Watcher.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/platforms/web/entry-runtime-with-compiler-fragment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/create-compiler.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/helpers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/parser/html-parser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/parser/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/parser/parser-filter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/compiler/to-function.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/mvue.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/mvue.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/demo1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/demo1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/instance/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/instance/init.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/instance/lifecycle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/instance/lifecycle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/instance/state.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/instance/state.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/observer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/observer/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/platforms/web/entry-runtime-with-compiler.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/platforms/web/entry-runtime-with-compiler-vn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/platforms/web/entry-runtime-with-compiler-vn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +44,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.16.0" />
     <property name="javascript.nodejs.core.library.typings.version" value="14.14.37" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../learner" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vue-analysis" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -60,11 +56,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\lenrn\mvue\src\compiler\parser" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\liuyu\Desktop\demo\mvue\src\core" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.dev:vn">
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -87,8 +86,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.dev" />
         <item itemvalue="npm.dev:vn" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
@@ -110,7 +109,10 @@
       <workItem from="1618121635783" duration="21766000" />
       <workItem from="1618192273810" duration="2710000" />
       <workItem from="1618195743511" duration="6894000" />
-      <workItem from="1618229935340" duration="2422000" />
+      <workItem from="1618229935340" duration="16177000" />
+      <workItem from="1618300481034" duration="1799000" />
+      <workItem from="1618367882716" duration="5044000" />
+      <workItem from="1618398168912" duration="6858000" />
     </task>
     <servers />
   </component>

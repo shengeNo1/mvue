@@ -1,6 +1,7 @@
+export const emptyObject = Object.freeze({})
 
 function polyfillBind(fn, ctx) {
-    function boundFn (a){
+    function boundFn(a) {
         const l = arguments.length
         return l
             ? l > 1
@@ -13,7 +14,7 @@ function polyfillBind(fn, ctx) {
     return boundFn
 }
 
-function nativeBind (fn, ctx) {
+function nativeBind(fn, ctx) {
     return fn.bind(ctx)
 }
 
@@ -30,6 +31,21 @@ export function getVal(exp, obj) {
     return exp.split('.').reduce((data, currentVal) => {
         return data[currentVal]
     }, obj)
+}
+
+export function makeMap(
+    str,
+    expectsLowerCase
+) {
+    const map = Object.create(null)
+    const list = str.split(',')
+    for (let i = 0; i < list.length; i++) {
+        map[list[i]] = true
+    }
+
+    return expectsLowerCase
+        ? val => map[val.toLowerCase()]
+        : val => map[val]
 }
 
 export const bind = Function.prototype.bind ? nativeBind : polyfillBind
