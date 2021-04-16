@@ -5,17 +5,21 @@
     <title>Title</title>
 </head>
 <body>
-<div id="app" >
 
+<div id="app" class="gogo">
+    <p style="color: aqua">123</p>
+    <span>{{msg}}</span>
+    <input type="text">
 </div>
+
 <script src="../../dist/mvue.js"></script>
 <script>
     let vm = new MVue({
         el: '#app',
         data() {
-          return{
-              msg: 'hello world'
-          }
+            return {
+                msg: 'hello world'
+            }
         },
         methods: {
             clickHandler() {

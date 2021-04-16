@@ -1,5 +1,13 @@
 export const emptyObject = Object.freeze({})
 
+export function cached (fn) {
+    const cache = Object.create(null)
+    return (function cachedFn (str) {
+        const hit = cache[str]
+        return hit || (cache[str] = fn(str))
+    })
+}
+
 function polyfillBind(fn, ctx) {
     function boundFn(a) {
         const l = arguments.length

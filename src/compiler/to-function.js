@@ -5,8 +5,6 @@ export function createCompileToFunctionFn(compile) {
 
         const compiled = compile(template)
 
-        console.log(compiled)
-
         // turn code into functions
         const res = {}
         const fnGenErrors = []

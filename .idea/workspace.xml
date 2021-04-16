@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="735558e9-991c-4629-b73e-40b439228e8f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/compiler/parser/text-parser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/mvue.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/mvue.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/demo1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/examples/demo1/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/parser/html-parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/parser/html-parser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/compiler/parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/parser/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/compiler/to-function.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/compiler/to-function.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +110,7 @@
       <workItem from="1618300481034" duration="1799000" />
       <workItem from="1618367882716" duration="5044000" />
       <workItem from="1618398168912" duration="6858000" />
-      <workItem from="1618543043972" duration="1127000" />
+      <workItem from="1618543043972" duration="10461000" />
     </task>
     <servers />
   </component>
