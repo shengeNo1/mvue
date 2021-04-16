@@ -42,14 +42,7 @@ export function parser(template) {
     const stack = []
     let currentParent
 
-    let root = parseHTML(template,{
-
-        start(tag, attrs, unary, start) {
-            let element = createASTElement(tag, attrs, currentParent)
-
-        }
-
-    })
+    let root = parseHTML(template)
 }
 
 
